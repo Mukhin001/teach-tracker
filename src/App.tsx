@@ -5,11 +5,11 @@ import "./style.css";
 
 function App() {
   return (
-    <>
+    <div className="max-w-[800px] mx-auto px-5">
       <Header></Header>
       <Main></Main>
       <Fields></Fields>
-    </>
+    </div>
   );
 }
 

@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import progressReduser from "../features/progressSlice";
+import techReduser from "../features/techSlice";
 
 export const store = configureStore({
   reducer: {
     progress: progressReduser,
-    //tech: techReduser,
+    tech: techReduser,
   },
 });
 
