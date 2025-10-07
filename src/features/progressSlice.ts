@@ -5,7 +5,7 @@ export interface ProgressState {
 }
 
 const initialState: ProgressState = {
-  progress: "",
+  progress: "Технологий пока нет. Добавьте первую.",
 };
 
 export const progressSlice = createSlice({

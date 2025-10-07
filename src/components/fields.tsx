@@ -47,32 +47,36 @@ const Fields = () => {
 
   return (
     <section>
-      <h2>Добавить технологию</h2>
+      <h2 className="font-semibold text-xl">Добавить технологию</h2>
       <div>
-        <form onSubmit={handleSubmitForm} className="grid justify-start">
-          <label htmlFor="namefield">Название</label>
+        <form onSubmit={handleSubmitForm} className="grid justify-start gap-2">
+          <label htmlFor="namefield" className="font-semibold text-l">
+            Название
+          </label>
           <input
             type="text"
             id="namefield"
             name="namefield"
             placeholder="Введите название"
-            className={`border-2 rounded-[10px] py-2 px-4 ${
-              inputStyle.namefield ? "border-gray-500" : "border-red-500"
+            className={`border rounded-[7px] py-2 px-4 bg-gray-100 ${
+              inputStyle.namefield ? "border-gray-300" : "border-red-400"
             }`}
           />
-          <label htmlFor="descriptionfield">Описание</label>
+          <label htmlFor="descriptionfield" className="font-semibold text-l">
+            Описание
+          </label>
           <input
             type="text"
             id="descriptionfield"
             name="descriptionfield"
             placeholder="Введите описание"
-            className={`border-2 rounded-[10px] py-2 px-4 ${
-              inputStyle.descriptionfield ? "border-gray-500" : "border-red-500"
+            className={`border rounded-[7px] py-2 px-4 bg-gray-100 ${
+              inputStyle.descriptionfield ? "border-gray-300" : "border-red-400"
             }`}
           />
           <button
             type="submit"
-            className="border-2 border-gray-500 rounded-[10px] py-2 px-4 cursor-pointer"
+            className="bg-gray-100 border border-gray-300 rounded-[7px] py-2 px-4 cursor-pointer mt-2"
           >
             Создать
           </button>
