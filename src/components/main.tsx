@@ -1,11 +1,23 @@
 import { useState } from "react";
-import { useAppSelector } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import Modal from "./modal";
+import { replaceTech } from "../features/techSlice";
 
 const Main = () => {
   const technologies = useAppSelector((state) => state.tech.technologies);
   const [techId, setTechId] = useState<number | null>(null);
   const activeTech = technologies.find((t) => t.id === techId);
+  const dispatch = useAppDispatch();
+
+  const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTech = technologies.map((tech) =>
+      tech.id === activeTech?.id
+        ? { ...tech, done: e.currentTarget.checked }
+        : tech
+    );
+
+    dispatch(replaceTech(newTech));
+  };
 
   return (
     <main className="my-4">
@@ -31,13 +43,18 @@ const Main = () => {
             </h3>
             {activeTech.description}
             <div className="h-[2px] bg-gray-200 my-4"></div>
-            <button
-              className="border-2 border-gray-500 rounded-[10px] py-2 px-2 cursor-pointer"
-              type="button"
-              onClick={() => ""}
-            >
-              x
-            </button>
+            <div>
+              <input
+                type="checkbox"
+                id="donetech"
+                name="donetech"
+                defaultChecked={activeTech.done}
+                onChange={handleChecked}
+              />
+              <label htmlFor="donetech" className="pl-2">
+                Сделанно!
+              </label>
+            </div>
           </>
         </Modal>
       )}

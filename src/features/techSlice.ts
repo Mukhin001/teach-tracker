@@ -4,6 +4,7 @@ export interface Tech {
   id: number;
   name: string;
   description: string;
+  done: boolean;
 }
 
 interface TechState {
@@ -22,10 +23,15 @@ export const techSlice = createSlice({
       state.technologies.push(action.payload);
     },
     removeTech: (state, action: PayloadAction<number>) => {
-      state.technologies.filter((tech) => tech.id !== action.payload);
+      state.technologies = state.technologies.filter(
+        (tech) => tech.id !== action.payload
+      );
+    },
+    replaceTech: (state, action: PayloadAction<Tech[]>) => {
+      state.technologies = action.payload;
     },
   },
 });
 
-export const { addTech, removeTech } = techSlice.actions;
+export const { addTech, removeTech, replaceTech } = techSlice.actions;
 export default techSlice.reducer;

@@ -4,7 +4,7 @@ import { addTech, type Tech } from "../features/techSlice";
 
 interface AddFormFields extends HTMLFormControlsCollection {
   namefield: HTMLInputElement;
-  descriptionfield: HTMLInputElement;
+  descriptionfield: HTMLTextAreaElement;
 }
 
 interface AddFormElements extends HTMLFormElement {
@@ -18,6 +18,8 @@ const Fields = () => {
     namefield: boolean;
     descriptionfield: boolean;
   }>({ namefield: true, descriptionfield: true });
+  const [textRows, setTextRows] = useState<number>(64);
+  const [textR, setTextR] = useState<number>(2);
 
   const handleSubmitForm = (e: React.FormEvent<AddFormElements>) => {
     e.preventDefault();
@@ -39,8 +41,9 @@ const Fields = () => {
 
     setInputStyle({ namefield: true, descriptionfield: true });
     const id: number = technologies.length + 1;
-    const techObj: Tech = { id, name, description };
+    const techObj: Tech = { id, name, description, done: false };
     addTechnologie(addTech(techObj));
+    setTextR(2);
 
     e.currentTarget.reset();
   };
@@ -65,11 +68,17 @@ const Fields = () => {
           <label htmlFor="descriptionfield" className="font-semibold text-l">
             Описание
           </label>
-          <input
-            type="text"
+          <textarea
             id="descriptionfield"
             name="descriptionfield"
             placeholder="Введите описание"
+            rows={textR}
+            onChange={(e) => {
+              if (e.target.scrollHeight > textRows) {
+                setTextRows(e.target.scrollHeight);
+                setTextR((p) => p + 1);
+              }
+            }}
             className={`border rounded-[7px] py-2 px-4 bg-gray-100 ${
               inputStyle.descriptionfield ? "border-gray-300" : "border-red-400"
             }`}
