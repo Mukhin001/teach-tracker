@@ -28,7 +28,8 @@ const Main = () => {
             className="
               text-center rounded-[10px] py-4 px-4 
               cursor-pointer bg-green-400 text-amber-50
-              hover:text-black hover:bg-amber-50 hover:shadow transition-all"
+              hover:text-black hover:bg-amber-50 hover:shadow transition-all
+               overflow-hidden text-ellipsis whitespace-nowrap"
             onClick={() => setTechId(tech.id)}
           >
             {tech.name}
@@ -41,7 +42,7 @@ const Main = () => {
             <h3 className="font-semibold text-xl text-center py-4">
               {activeTech.name}
             </h3>
-            {activeTech.description}
+            <p>{activeTech.description}</p>
             <div className="h-[2px] bg-gray-200 my-4"></div>
             <div>
               <input
